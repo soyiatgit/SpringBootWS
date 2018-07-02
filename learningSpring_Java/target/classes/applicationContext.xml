@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="customerRepositoryInterface" class="com.customer.repository.CustomerRepositoryImpl" />
+
+	<!-- Demonstrated below are the two way of injection in Spring. We can use 
+		any of them and even both of them can also be used together for injection 
+		in a bean -->
+
+	<!-- the below tag represents the setter injection (property injection) 
+		of customerRepositoryInterface in to customerServiceInterface. The name in 
+		property is the name by which it is injected, while the ref is the name of 
+		the bean which is injected -->
+
+	<!--<bean name="customerServiceInterface" class="com.customer.service.CustomerServiceImpl"> 
+			<property name="customerRepo" ref="customerRepositoryInterface" /> 
+		</bean> -->
+
+
+
+	<!-- below is another way of injection via constructor, for this kind of 
+		injection, you need to set argument by index and need to have a constructor -->
+		
+	<!-- <bean name="customerServiceInterface" class="com.customer.service.CustomerServiceImpl">
+		<constructor-arg index="0" ref="customerRepositoryInterface" />
+	</bean> -->
+
+
+
+	<!-- another way of dependency injection is to auto wire them. In this case we do not have
+		to mention the dependency as property or as constructor. We tell spring to autowire 
+		them so that the framework can automatically discover them whenever they are placed
+		somewhere.  
+		Auto wiring is done by name or by type or by constructor -->
+		
+	<!-- this auto wiring below is similar to constructor wiring above -->
+	
+	<!-- <bean name="customerServiceInterface" class="com.customer.service.CustomerServiceImpl" autowire="constructor" /> -->
+	
+	
+	
+	<!-- When auto wired byName, the framework looks for the name of the injected dependency in a class and tries to
+		match them with a bean declared here. For example, if you want to inject the topmost bean in this file in to
+		below bean. The name of injected variable should be same as the name in topmost bean -->
+	<!-- <bean name="customerServiceInterface" class="com.customer.service.CustomerServiceImpl" autowire="byName" /> -->
+	
+	
+	
+	<!-- When auto wired byType, the framework looks for the type of the injected dependency in a class and tries to
+		match them with a bean declared here. For example, if you want to inject the topmost bean in this file in to
+		below bean. The type of injected variable should be same as the type of topmost bean -->
+	<bean name="customerServiceInterface" class="com.customer.service.CustomerServiceImpl" autowire="byType" /> 
+</beans>

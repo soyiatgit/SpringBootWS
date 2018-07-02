@@ -1,0 +1,25 @@
+CREATE TABLE
+    person
+    (
+        id BIGINT NOT NULL,
+        name VARCHAR,
+	age NUMERIC,
+	occupation VARCHAR,
+        country VARCHAR,
+	dob DATETIME,
+        PRIMARY KEY (id)
+    );
+
+CREATE TABLE
+    hibernate_sequence
+    (
+        next_val BIGINT
+    );
+
+# sqlite accepts date as milliseconds from 01-01-1970 and two other formats.
+# https://www.sqlite.org/datatype3.html#section_2_2
+INSERT INTO person(id, name, age, occupation, country, dob) VALUES (1, 'Saurabh Tiwari', 26, 'Enterprise Developer', 'India', 713836800000);
+INSERT INTO person(id, name, age, occupation, country, dob) VALUES (2, 'Deepak Tiwari', 22, 'Enterprise Developer', 'India', 837561600000);
+INSERT INTO person(id, name, age, occupation, country, dob) VALUES (3, 'Gunjan Tiwari', 24, 'Enterprise Tester', 'India', 771206400000);
+
+INSERT INTO hibernate_sequence (next_val) VALUES (4);
